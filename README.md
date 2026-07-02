@@ -1,6 +1,6 @@
 # Cloth Simulation
 
-Simulação de tecido em Canvas 2D, sem framework. Projeto de estudo/diversão — não é para portfólio de emprego, é para conversa técnica com pessoas da área.
+Simulação de tecido em Canvas 2D, sem framework. Projeto de estudo/diversão.
 
 ## Stack
 
