@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Cloth Simulation</title>
+<style>
+  html, body {
+    margin: 0;
+    height: 100%;
+    background: #0d0d12;
+    overflow: hidden;
+  }
+  canvas {
+    display: block;
+  }
+  #hint {
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    color: #888;
+    font-family: monospace;
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+<div id="hint">arraste = puxar pano | shift+arraste = cortar</div>
+<canvas id="canvas"></canvas>
+<script src="cloth.js"></script>
+</body>
+</html>
