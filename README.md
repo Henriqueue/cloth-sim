@@ -1,36 +1,34 @@
 # Cloth Simulation
 
-Simulação de tecido em Canvas 2D, sem framework. Projeto de estudo/diversão.
+Cloth simulation using 2D Canvas, without frameworks. A project for learning and fun.
 
 ## Stack
 
-Vanilla JS + Canvas 2D API. Sem build step, sem dependências.
+Vanilla JS + Canvas 2D API. No build step, no dependencies.
 
-## Como rodar
+## How to run
 
-Abra `index.html` direto no navegador. Não precisa de servidor.
+Open `index.html` directly in your browser. No server required.
 
-## Interação
+## Interaction
 
-- **Arrastar (mouse down + move)**: puxa o pano na direção do movimento.
-- **Shift + arrastar**: corta constraints próximas ao cursor.
+- **Drag (mouse down + move)**: pulls the cloth in the direction of movement.
+- **Shift + drag**: cuts constraints near the cursor.
 
-## Como funciona
+## How it works
 
-- **Verlet integration**: cada ponto guarda posição atual e posição anterior; velocidade é implícita na diferença entre as duas. Não há vetor de velocidade explícito.
-- **Position Based Dynamics**: as conexões entre pontos (constraints) são resolvidas iterativamente (`solverIterations` no `CONFIG`) a cada frame, não apenas uma vez — uma única passada deixa o pano elástico e instável.
-- **Damping**: fricção artificial (`CONFIG.damping`) evita que o pano trema para sempre.
-- **Tear**: constraints se rompem automaticamente se esticadas além de `tearDistanceMultiplier` vezes o comprimento de repouso.
+- **Verlet integration**: each point stores its current and previous positions; velocity is implicit in the difference between the two. There is no explicit velocity vector.
+- **Position Based Dynamics**: connections between points (constraints) are resolved iteratively (`solverIterations` in `CONFIG`) every frame, rather than just once—a single pass makes the cloth elastic and unstable.
+- **Damping**: artificial friction (`CONFIG.damping`) prevents the cloth from shaking indefinitely.
+- **Tear**: constraints break automatically if stretched beyond `tearDistanceMultiplier` times their resting length.
 
-## Limitações conhecidas (estado atual, v1)
+## Known limitations (current state, v1)
 
-- Vento é ruído senoidal por índice de ponto, não força física real baseada em normais de face.
-- Sem spatial partitioning — checagem de mouse é O(n) por frame, solver é O(constraints) por iteração. Funciona bem até ~3000 pontos; além disso, precisa de quadtree ou grid hashing.
-- Sem correção de `deltaTime` — física assume ~60fps via `requestAnimationFrame`; comportamento muda em telas de refresh rate diferente.
+- Wind is simulated as sinusoidal noise based on point index, not as a true physical force based on face normals.
+- No spatial partitioning—mouse checking is O(n) per frame, and the solver is O(constraints) per iteration. It works well up to ~3000 points; beyond that, a quadtree or grid hashing would be needed.
+- No `deltaTime` correction—physics assumes ~60fps via `requestAnimationFrame`; behavior changes on screens with different refresh rates.
 
-## Versionamento
+## Versioning
 
-Cada fase relevante do projeto é marcada com uma tag anotada (`git tag -a`), com descrição do que mudou naquela versão. Não há README por versão — o README reflete sempre o estado atual; para ver o que existia em uma versão anterior, use `git show <tag>:README.md` ou faça checkout da tag.
-
-Tags atuais:
-- `v1-esqueleto`: estrutura inicial — grid, constraints, solver Verlet, interação básica de mouse (arrastar/cortar).
+Each significant phase of the project is marked with an annotated tag (`git tag -a`), including a description of changes in that version. There is no per-version README—the README always reflects the current state; to view the state of a previous version, use `git show <tag>:README.md` or check out the tag. Current tags:
+- `v1-skeleton`: initial structure — grid, constraints, Verlet solver, basic mouse interaction (drag/cut).
